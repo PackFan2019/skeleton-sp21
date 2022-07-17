@@ -21,9 +21,7 @@ public class ArrayDeque<T> {
       size=0;
   }
 
-    public ArrayDeque(ArrayDeque other){
 
-    }
 
     public void addFirst(T item){
         checkIncreaseSize();
@@ -168,7 +166,7 @@ public class ArrayDeque<T> {
 
     private void checkDecreaseSize() {
         if (arrayMaxSize>16 && (size - 1)*4 < arrayMaxSize) {
-            T[] newArray = (T[]) new Object[size / 2];
+            T[] newArray = (T[]) new Object[arrayMaxSize / 2];
 
 
             if (tail >= head) {
@@ -180,7 +178,7 @@ public class ArrayDeque<T> {
 
             head = 0;
             tail = size - 1;
-            arrayMaxSize = size / 2;
+            arrayMaxSize = arrayMaxSize / 2;
             saveArray = newArray;
 
 
@@ -234,20 +232,38 @@ public class ArrayDeque<T> {
 
     }
 
+    public ArrayDeque(ArrayDeque<T> other){
+
+      head=other.head;
+      tail=other.tail;
+      size=other.size;
+
+      arrayMaxSize=other.arrayMaxSize;
+      saveArray=(T[])new Object[arrayMaxSize];
+      System.arraycopy(other.saveArray,0,this.saveArray,0,arrayMaxSize);
+
+
+    }
+
 
     public static void main(String[] args) {
         ArrayDeque<Integer> myArray=new ArrayDeque();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20000; i++) {
 
             myArray.addLast(i);
         }
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10000; i++) {
 
             myArray.removeFirst();
+        }
+        for (int i = 0; i < 9999; i++) {
+
+            myArray.removeLast();
         }
 
 
         myArray.printDeque();
+        System.out.println(myArray.arrayMaxSize);
 
     }
 
