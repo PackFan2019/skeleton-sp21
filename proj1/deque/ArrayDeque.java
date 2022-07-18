@@ -1,6 +1,6 @@
 package deque;
 
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements List61B<T> {
 
   private  T[] saveArray;
 
@@ -21,8 +21,7 @@ public class ArrayDeque<T> {
       size=0;
   }
 
-
-
+    @Override
     public void addFirst(T item){
         checkIncreaseSize();
         if(head==-1)
@@ -37,7 +36,7 @@ public class ArrayDeque<T> {
         }
 
     }
-
+    @Override
     public void addLast(T item){
       checkIncreaseSize();
       tail=addOne(tail);
@@ -185,6 +184,7 @@ public class ArrayDeque<T> {
         }
     }
 
+
     public T removeLast(){
         checkDecreaseSize();
         if (size==0) {
@@ -209,6 +209,7 @@ public class ArrayDeque<T> {
         }
     }
 
+    @Override
     public T get(int index){
        if (index<0 || index>=size){
 
@@ -245,9 +246,15 @@ public class ArrayDeque<T> {
 
     }
 
+    @Override
+    public void print()
+    {
+        System.out.println("this is from Lower level");
+    }
+
 
     public static void main(String[] args) {
-        ArrayDeque<Integer> myArray=new ArrayDeque();
+ /*       ArrayDeque<Integer> myArray=new ArrayDeque();
         for (int i = 0; i < 20000; i++) {
 
             myArray.addLast(i);
@@ -263,7 +270,13 @@ public class ArrayDeque<T> {
 
 
         myArray.printDeque();
-        System.out.println(myArray.arrayMaxSize);
+        System.out.println(myArray.arrayMaxSize);*/
+
+        List61B<String> someList=new ArrayDeque<>();
+        someList.addFirst("elk");
+
+        someList.print();
+
 
     }
 

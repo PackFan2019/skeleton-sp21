@@ -5,7 +5,7 @@ package deque;
 //size: 3 the next one go is the position of size
 
 
-public class AList<Item> {
+public class AList<Item>  {
     private Item[] items;
     private int size;
 
